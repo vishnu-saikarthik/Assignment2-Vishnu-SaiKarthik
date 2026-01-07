@@ -8,13 +8,13 @@ The following pipeline demonstrates how a document is processed from upload to f
 
 ```mermaid
 graph TD
-    User([User / Gradio Client]) -->|Uploads File| API[Node.js API (Port 4000)]
+    User([User / Gradio Client]) -->|Uploads File| API[Node.js API]
     API -->|1. Receive File| OCR{OCR Service}
     
     OCR -->|If Image| Vision[OpenAI Vision API]
     OCR -->|If PDF| PDFParse[pdf-parse Library]
     
-    Vision -->|Raw Text| LLM[LLM Service (GPT-4o-mini)]
+    Vision -->|Raw Text| LLM[LLM Service GPT-4o-mini]
     PDFParse -->|Raw Text| LLM
     
     LLM -->|2. Extract Structured Data| Data{Structured JSON}
